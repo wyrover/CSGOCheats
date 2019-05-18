@@ -1,0 +1,36 @@
+#include "Memory.h"
+#include "Offsets.h"
+#include <iostream>
+#include "BHop.h"
+
+bool IsWindowFocused()
+{
+	HWND tWnd = FindWindow(NULL, "Counter-Strike: Global Offensive");
+
+	if (GetForegroundWindow() == tWnd)
+		return true;
+	else
+		return false;
+}
+
+int main()
+{
+	while (!mem.Attach("csgo.exe", PROCESS_ALL_ACCESS)) {}
+	bClient = mem.GetModule("client_panorama.dll");
+
+	value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
+
+	if (value.LocalPlayer == NULL)
+		while (value.LocalPlayer == NULL)
+			value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
+
+	while (true)
+	{
+		if (!IsWindowFocused())
+			continue;
+
+		BunnyHop();
+
+		Sleep(1);
+	}
+}
