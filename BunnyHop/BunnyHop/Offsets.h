@@ -143,7 +143,7 @@ struct gameOffsets
 }offset;
 
 memory mem;
-PModule bClient;
+PModule GameModule;
 
 struct values
 {
