@@ -16,7 +16,7 @@ void AntiFlash()
 {
 	int FlashDuration = mem.Read<int>(value.LocalPlayer + offset.m_flFlashDuration);
 	if (FlashDuration > 0)
-		mem.Write(value.LocalPlayer + offset.m_flFlashDuration, 0);
+		mem.Write<int>(value.LocalPlayer + offset.m_flFlashDuration, 0);
 }
 
 int main()
