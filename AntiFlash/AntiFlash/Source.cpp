@@ -22,13 +22,13 @@ void AntiFlash()
 int main()
 {
 	while (!mem.Attach("csgo.exe", PROCESS_ALL_ACCESS)) {}
-	bClient = mem.GetModule("client_panorama.dll");
+	GameModule = mem.GetModule("client_panorama.dll");
 
-	value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
+	value.LocalPlayer = mem.Read<DWORD>(GameModule.dwBase + offset.dwLocalPlayer);
 
 	if (!value.LocalPlayer)
 		while (!value.LocalPlayer)
-			value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
+			value.LocalPlayer = mem.Read<DWORD>(GameModule.dwBase + offset.dwLocalPlayer);
 
 	while (true)
 	{
