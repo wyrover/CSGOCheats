@@ -16,7 +16,7 @@ bool IsPlayerMoving()
 
 bool IsMouseActive()
 {
-	BYTE MouseActivity = mem.Read<BYTE>(bClient.dwBase + offset.dwMouseEnable);
+	BYTE MouseActivity = mem.Read<BYTE>(GameModule.dwBase + offset.dwMouseEnable);
 
 	if (MouseActivity == 'Y')
 		return true;
@@ -31,6 +31,6 @@ void BunnyHop()
 	if(IsMouseActive())
 	{
 		value.Flag = mem.Read<BYTE>(value.LocalPlayer + offset.m_fFlags);
-		mem.Write<DWORD>(bClient.dwBase + offset.dwForceJump, (value.Flag & (1 << 0)) ? 5 : 4);
+		mem.Write<DWORD>(GameModule.dwBase + offset.dwForceJump, (value.Flag & (1 << 0)) ? 5 : 4);
 	}
 }
