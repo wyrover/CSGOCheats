@@ -20,8 +20,8 @@ int main()
 
 	value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
 
-	if (value.LocalPlayer == NULL)
-		while (value.LocalPlayer == NULL)
+	if (!value.LocalPlayer)
+		while (!value.LocalPlayer)
 			value.LocalPlayer = mem.Read<DWORD>(bClient.dwBase + offset.dwLocalPlayer);
 
 	while (true)
