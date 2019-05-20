@@ -19,14 +19,13 @@ void AntiFlash()
 
 BOOL WINAPI main()
 {
-	value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
-	if (!value.LocalPlayer)
-		while (!value.LocalPlayer)
-			value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
-
 	while (true)
 	{
 		if (!IsWindowFocused())
+			continue;
+		
+		value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
+		if (!value.LocalPlayer)
 			continue;
 
 		AntiFlash();
