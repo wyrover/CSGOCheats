@@ -15,14 +15,13 @@ BOOL WINAPI main()
 {
 	bool canTBot = false;
 
-	value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
-	if (!value.LocalPlayer)
-		while (!value.LocalPlayer)
-			value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
-
 	while (true)
 	{
 		if (!IsWindowFocused())
+			continue;
+		
+		value.LocalPlayer = *(DWORD*)(GameModule + offset.dwLocalPlayer);
+		if (!value.LocalPlayer)
 			continue;
 
 		if (GetAsyncKeyState(VK_F2) & 1)
